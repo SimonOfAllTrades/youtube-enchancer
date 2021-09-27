@@ -34,11 +34,18 @@ function swapCommentsAndRelatedVideos() {
         document.getElementById("primary-inner").append(comments);
         document.getElementById("newSideDiv").remove();
     } else {
-        const playerApi = document.getElementsByClassName("ytp-iv-video-content");
         const newSideDiv = document.createElement("div");
         const secondary = document.getElementById("secondary");
         newSideDiv.id = "newSideDiv";
-        newSideDiv.style.height = playerApi[0].clientHeight+"px";
+        const playerApi = document.getElementsByClassName("ytp-iv-video-content");
+        const player = document.getElementById("player-api");
+        if (player) {
+            newSideDiv.style.height = player.style.height;
+        } else if (playerApi.length != 0) {
+            newSideDiv.style.height = playerApi[0].clientHeight+"px";
+        } else {
+            newSideDiv.style.height = "720px";
+        }
         console.log(newSideDiv.style.height);
         newSideDiv.style.width = "auto";
         newSideDiv.style.overflowY = "scroll";
