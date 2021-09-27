@@ -34,11 +34,12 @@ function swapCommentsAndRelatedVideos() {
         document.getElementById("primary-inner").append(comments);
         document.getElementById("newSideDiv").remove();
     } else {
-        const playerApi = document.getElementById("player-api");
+        const playerApi = document.getElementsByClassName("ytp-iv-video-content");
         const newSideDiv = document.createElement("div");
         const secondary = document.getElementById("secondary");
         newSideDiv.id = "newSideDiv";
-        newSideDiv.style.height = playerApi.style.height;
+        newSideDiv.style.height = playerApi[0].clientHeight+"px";
+        console.log(newSideDiv.style.height);
         newSideDiv.style.width = "auto";
         newSideDiv.style.overflowY = "scroll";
         newSideDiv.appendChild(comments);
