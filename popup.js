@@ -29,40 +29,20 @@ function setPageBackgroundColor() {
 
 function swapCommentsAndRelatedVideos() {
 
-    function swapElements(nodeA, nodeB) {
-        const parentA = nodeA.parentNode;
-        const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
-    
-        // Move `nodeA` to before the `nodeB`
-        nodeB.parentNode.insertBefore(nodeA, nodeB);
-    
-        // Move `nodeB` to before the sibling of `nodeA`
-        parentA.insertBefore(nodeB, siblingA);
-    }
-
-    function createSideDiv() {
-        if (document.getElementById("newSideDiv")) {
-            document.getElementById("newSideDiv").remove();
-            return null
-        } else {
-            const newSideDiv = document.createElement("div");
-            newSideDiv.id = "newSideDiv";
-            newSideDiv.style.height = playerApi.style.height;
-            newSideDiv.style.width = "auto";
-            newSideDiv.style.overflowY = "scroll";
-            return newSideDiv;
-        }
-    }
-
-    const playerApi = document.getElementById("player-api");
-    
-    let secondaryInner = document.getElementById("secondary-inner");
     let comments = document.getElementById("comments");
-
-    //swapElements(secondaryInner, comments);
-    newSideDiv = createSideDiv();
-    if (newSideDiv) {
-        secondaryInner.parentNode.prepend(newSideDiv);
+    if (document.getElementById("newSideDiv")) {
+        document.getElementById("primary-inner").append(comments);
+        document.getElementById("newSideDiv").remove();
+    } else {
+        const playerApi = document.getElementById("player-api");
+        const newSideDiv = document.createElement("div");
+        const secondary = document.getElementById("secondary");
+        newSideDiv.id = "newSideDiv";
+        newSideDiv.style.height = playerApi.style.height;
+        newSideDiv.style.width = "auto";
+        newSideDiv.style.overflowY = "scroll";
         newSideDiv.appendChild(comments);
+        secondary.prepend(newSideDiv);
     }
+
 }
