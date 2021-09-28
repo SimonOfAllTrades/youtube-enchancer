@@ -35,7 +35,9 @@ function swapCommentsAndRelatedVideos() {
         document.getElementById("newSideDiv").remove();
     } else {
         const newSideDiv = document.createElement("div");
-        const secondary = document.getElementById("secondary");
+        // Jesus Christ Youtube uses the same ID twice multiple times in the html, what a f*cking joke
+        // used to be document.getElementById("secondary") but cannot use that since "secondary" is used twice as an ID
+        const secondary = document.getElementById("secondary-inner");
         newSideDiv.id = "newSideDiv";
         const playerApi = document.getElementsByClassName("ytp-iv-video-content");
         const player = document.getElementById("player-api");
