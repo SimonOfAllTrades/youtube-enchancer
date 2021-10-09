@@ -1,5 +1,5 @@
 // Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+let changeColor = document.getElementById("moveComments");
 
 function removeAllChildNodes(parent) {
 
